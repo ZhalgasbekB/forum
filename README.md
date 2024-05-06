@@ -39,7 +39,7 @@ Procedure for the user:
 
 1. Clone the project from the repository
 2. Go to the project root folder
-3. Enter the docker-compose up command
+3. Enter the ` docker-compose up ` command
 4. In the command line of the client terminal, wait for the message about the successful launch of the service "The system check was successful, the client server has started"
 5. Go to [http://localhost:8082/](http://localhost:8082/)
 
