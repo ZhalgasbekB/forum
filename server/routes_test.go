@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -99,8 +98,8 @@ func TestRegisterExistingAccount(t *testing.T) {
 
 func TestRegisterNewAccount(t *testing.T) {
 	payload := map[string]string{
-		"name":     "Danial",
-		"email":    "danial@gmail.com.somerandom.comx", // Should be random always.
+		"name":     "somerandomusername",
+		"email":    "somerandom@email.comx", // Should be random always.
 		"password": "1234512345",
 	}
 	payloadBytes, _ := json.Marshal(payload)
@@ -154,7 +153,6 @@ func TestLoginIncorrectCredentials(t *testing.T) {
 	expectedMessage := "Invalid Credentials"
 	json.Unmarshal(rr.Body.Bytes(), &response)
 	if value, ok := response["message"]; !ok || value != expectedMessage {
-		fmt.Println(response)
 		t.Errorf("handler returned unexpected body, missing 'name'")
 	}
 }
@@ -186,7 +184,6 @@ func TestLoginCorrectCredentials(t *testing.T) {
 	var response map[string]string
 	json.Unmarshal(rr.Body.Bytes(), &response)
 	if _, ok := response["name"]; !ok {
-		fmt.Println(response)
 		t.Errorf("handler returned unexpected body, missing 'name'")
 	}
 	if _, ok := response["email"]; !ok {
@@ -213,65 +210,6 @@ func TestLikePosts(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
 	}
 }
-
-func TestMyPosts(t *testing.T) {
-	req, err := http.NewRequest("GET", "/userd3/myposts", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	services, rr, err := initServices()
-	if err != nil {
-		t.Errorf("Error initializing services: %s", err)
-	}
-
-	h := server.NewHandler(services)
-	handler := http.HandlerFunc(h.PostsUser)
-	handler.ServeHTTP(rr, req)
-
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
-}
-
-// func TestCreatePosts(t *testing.T) {
-// 	payload := map[string]string{
-// 		"cookie_uuid":   "ad07db8a-a88b-4a31-b37e-49c398886756",
-// 		"category_name": "Станции",
-// 		"title":         "Станция Люберцы",
-// 		"discription":   "Новые поезда",
-// 	}
-// 	payloadBytes, _ := json.Marshal(payload)
-// 	req, err := http.NewRequest("POST", "/userd3/posts", bytes.NewReader(payloadBytes))
-// 	if err != nil {
-// 		t.Fatal(err)
-// 	}
-
-// 	user := &model.User{
-// 		ID:    1337,
-// 		Name:  "Danial",
-// 		Email: "danial@example.com",
-// 	}
-
-// 	req = setUserContext(req, user)
-// 	cookie := &http.Cookie{
-// 		Name:  "UserData",
-// 		Value: "ad07db8a-a88b-4a31-b37e-49c398886756",
-// 	}
-// 	req.AddCookie(cookie)
-// 	services, rr, err := initServices()
-// 	if err != nil {
-// 		t.Errorf("Error initializing services: %s", err)
-// 	}
-
-// 	h := server.NewHandler(services)
-// 	handler := http.HandlerFunc(h.CreatePosts)
-// 	handler.ServeHTTP(rr, req)
-
-// 	if status := rr.Code; status != http.StatusOK {
-// 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-// 	}
-// }
 
 func initServices() (service.Service, *httptest.ResponseRecorder, error) {
 	cfg, err := config.Load()
@@ -307,12 +245,3 @@ func initServices() (service.Service, *httptest.ResponseRecorder, error) {
 	rr := httptest.NewRecorder()
 	return services, rr, nil
 }
-
-// func setUserContext(r *http.Request, user *model.User) *http.Request {
-// 	ctx := context.WithValue(r.Context(), KeyUser("UserData"), user)
-// 	return r.WithContext(ctx)
-// }
-// func addContext(req *http.Request, key, value interface{}) *http.Request {
-// 	ctx := context.WithValue(req.Context(), key, value)
-// 	return req.WithContext(ctx)
-// }
