@@ -30,24 +30,24 @@ var (
 func InitPointApi(cfg config.Config) {
 	port := strconv.Itoa(cfg.PortServer)
 
-	allPost = "http://localhost:" + port + "/d3"                       // Получение всех постов
-	registry = "http://localhost:" + port + "/register"                // Регистрация нового пользователя
-	login = "http://localhost:" + port + "/login"                      // Вход пользователя в учетную запись
-	createPosts = "http://localhost:" + port + "/d3/post-create"       // Создание нового поста пользователем
-	userPost = "http://localhost:" + port + "/d3/user-posts"           // Получение постов созданных пользователем
-	getUserPost = "http://localhost:" + port + "/d3/post?id="          // Получение конкретного поста по индентификатору
-	createComments = "http://localhost:" + port + "/d3/comment-create" // Создание коментариев пользователем под постом
-	updatePosts = "http://localhost:" + port + "/d3/post-update?id="   // Изменение поста пользователем
-	deletePosts = "http://localhost:" + port + "/d3/post-delete?id="   // Удаление поста пользователем
-	votePosts = "http://localhost:" + port + "/d3/post-like"           // Постановка голоса на пост пользователем
-	voteComments = "http://localhost:" + port + "/d3/comment-like"     // Постанока голоса на комментарий пользователем
-	likePosts = "http://localhost:" + port + "/d3/user-likes"          // Получение постов которые понравились пользователю
-	updateComments = "http://localhost:" + port + "/d3/comment-update" // Изменение комментария пользователем
-	deleteComments = "http://localhost:" + port + "/d3/comment-delete" // Удаление комментария пользователем
-	logoutUsers = "http://localhost:" + port + "/logout"               // Выход пользовтаеля из учетной записи
-	categoryGet = "http://localhost:" + port + "/d3/category?name="    // Получение постов по конкретной категории
-	auth = "http://localhost:" + port + "/auth"                        // Регистрация и вход пользователя через стороннего провайдера
-	UploadImagePosts = "http://localhost:" + port + "/d3/upload-image"    // Передача данных о загрузке картинки к новому посту пользователя
+	allPost = "http://backend:" + port + "/d3"                       // Получение всех постов
+	registry = "http://backend:" + port + "/register"                // Регистрация нового пользователя
+	login = "http://backend:" + port + "/login"                      // Вход пользователя в учетную запись
+	createPosts = "http://backend:" + port + "/d3/post-create"       // Создание нового поста пользователем
+	userPost = "http://backend:" + port + "/d3/user-posts"           // Получение постов созданных пользователем
+	getUserPost = "http://backend:" + port + "/d3/post?id="          // Получение конкретного поста по индентификатору
+	createComments = "http://backend:" + port + "/d3/comment-create" // Создание коментариев пользователем под постом
+	updatePosts = "http://backend:" + port + "/d3/post-update?id="   // Изменение поста пользователем
+	deletePosts = "http://backend:" + port + "/d3/post-delete?id="   // Удаление поста пользователем
+	votePosts = "http://backend:" + port + "/d3/post-like"           // Постановка голоса на пост пользователем
+	voteComments = "http://backend:" + port + "/d3/comment-like"     // Постанока голоса на комментарий пользователем
+	likePosts = "http://backend:" + port + "/d3/user-likes"          // Получение постов которые понравились пользователю
+	updateComments = "http://backend:" + port + "/d3/comment-update" // Изменение комментария пользователем
+	deleteComments = "http://backend:" + port + "/d3/comment-delete" // Удаление комментария пользователем
+	logoutUsers = "http://backend:" + port + "/logout"               // Выход пользовтаеля из учетной записи
+	categoryGet = "http://backend:" + port + "/d3/category?name="    // Получение постов по конкретной категории
+	auth = "http://backend:" + port + "/auth"                        // Регистрация и вход пользователя через стороннего провайдера
+	UploadImagePosts = "http://backend:" + port + "/d3/upload-image" // Передача данных о загрузке картинки к новому посту пользователя
 }
 
 // Точки для работы с провайдерами Google и Github

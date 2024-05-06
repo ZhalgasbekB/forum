@@ -53,7 +53,7 @@ func getPathImage(r *http.Request, postId int) string {
 	}
 
 	// Создание GET запроса на получение информации о картинке к новому посту
-	req, err := http.NewRequest("GET", "http://localhost:8083/d3/upload-image", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("GET", "http://backend:8083/d3/upload-image", bytes.NewBuffer(jsonData))
 	if err != nil {
 		// errorPage(w, errors.ErrorServer, http.StatusInternalServerError)
 		log.Printf("Произошла ошибка при формировании GET запроса на получение данных об картинке к посту. Ошибка: %v", err)
