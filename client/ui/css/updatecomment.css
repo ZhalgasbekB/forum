@@ -1,0 +1,192 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 200px; /* Фиксированная высота */
+    resize: none; /* Предотвращаем изменение размеров мышью */
+}
+input[type="submit"] {
+    background-color: rgb(240, 13, 13);
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+input[type="submit"]:hover {
+    background-color: #d00;
+}
+
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для header и footer */
+header, footer {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Добавляем относительное позиционирование для header */
+}
+
+/* Навигационное меню в сером прямоугольнике */
+nav {
+    background-color: #ddd; /* Серый цвет фона */
+    padding: 10px;
+    margin-bottom: 20px; /* Отступ снизу */
+    border-radius: 10px; /* Закругление углов */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Убираем правый отступ у последнего элемента */
+}
+
+nav ul li a {
+    color: #333; /* Цвет текста */
+    text-decoration: none;
+    padding: 8px 16px; /* Поля внутри элемента */
+    border-radius: 5px; /* Закругление углов кнопок */
+}
+
+nav ul li a:hover {
+    background-color: #bbb; /* Серый цвет фона при наведении */
+}
+
+/* Секция с контентом */
+section {
+    padding: 30px;
+}
+
+/* Стили для формы изменения поста */
+.postupdate form {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    margin: 20px 0; /* Убираем отступы по бокам, оставляем отступ сверху и снизу */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.postupdate textarea {
+    width: calc(100% - 20px); /* Занимает всю ширину формы с учетом отступов */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 200px; /* Фиксированная высота */
+    resize: none; /* Запрещаем изменение размеров */
+    margin-bottom: 10px;
+}
+
+
+.postupdate input[type="text"],
+.postupdate textarea {
+    width: calc(100% - 20px); /* Занимает всю ширину формы с учетом отступов */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.postupdate .button-group {
+    display: flex;
+    justify-content: center;
+}
+
+.postupdate input[type="submit"] {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px; /* Отступ сверху */
+    margin-left: 10px; /* Небольшой отступ слева */
+}
+
+.postupdate input[type="submit"]:hover {
+    background-color: rgb(255, 152, 74);
+}
+
+/* Футер */
+footer {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Занимает всю ширину экрана */
+    margin: 0; /* Убираем отступы */
+}
+
+/* Медиа-запросы для адаптивности */
+@media only screen and (max-width: 600px) {
+    /* Уменьшаем размер текста в заголовке */
+
+    header h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    nav {
+        background-color: #ddd; /* Серый цвет фона */
+        margin-bottom: 10px; /* Отступ снизу */
+        border-radius: 10px; /* Закругление углов */
+    }
+
+    /* Стили для списка элементов меню */
+    nav ul {
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        white-space: nowrap;
+    }
+
+    nav ul li {
+        display: inline-block;
+        justify-content: left;
+    }
+}

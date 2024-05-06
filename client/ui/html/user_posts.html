@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои темы</title>
+    <link rel="stylesheet" href="/ui/css/userposts.css">
+</head>
+<body>
+    <header>
+        <h1>Мои созданные темы на форуме МЦД-3</h1>
+        <nav>
+            <ul class="show">
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/posts">Создать тему</a></li>
+                <li><a href="/userd3/likeposts">Понравившиеся темы</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <ul class="posts-list">
+        {{if .}}
+        {{range .}}
+        <li class="post">
+            <a href="/userd3/updatepost/{{.PostID}}" class="post post-link">
+            <h3>Тема: {{.Title}}</h3>
+            {{if .PathImage}}
+                <img src="http://localhost:8082{{.PathImage}}" alt="Картинка поста" style="width: 100px; height: auto;">
+                {{else}}
+                {{end}}
+            <div class="description-container">
+                <pre>{{.Description}}</pre>
+            </div>
+                <div class="post-info">
+                 <p>Категория: {{.CategoryName}}</p>
+                 <p>Дата создания: {{.CreatedAt}}</p>
+                 </div>
+            </a> 
+        </li>
+        {{end}}
+        {{else}}
+        <li>Вы еще не создали ни одной темы на форуме</li>
+        {{end}}
+    </ul>
+    </section>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+</html>

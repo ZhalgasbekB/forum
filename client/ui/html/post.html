@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обсуждение темы</title>
+    <link rel="stylesheet" href="/ui/css/post.css">
+</head>
+<body>
+    <header>
+        <h1>Обсуждение темы на форуме МЦД-3</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/myposts">Мои темы</a></li>
+                <li><a href="/userd3/likeposts">Понравившиеся темы</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        {{with .Post}}
+        <div class="post">
+            <h3>{{.Title}}</h3>
+            {{if .PathImage}}
+            <div class="overlay"></div>
+            <img src="{{.PathImage}}" alt="Картинка поста" class="zoomable" style="width: 100px; height: auto;">
+            {{else}}
+            {{end}}
+            <div class="description-container">
+                <pre>{{.Description}}</pre>
+            </div>            
+            <p>Категория: {{.CategoryName}}</p>
+            <p>Автор: {{.Author}}</p>
+            <p>Дата создания: {{.CreateDate}}</p>
+            <div class="vote-buttons">
+                <form action="/userd3/votepost" method="POST">
+                    <input type="hidden" name="postId" value="{{.PostId}}">
+                    <input type="hidden" name="vote" value="true">
+                    <input type="submit" value="Нравится">
+                    <span class="like-dislike-count">{{.Like}}</span>
+                </form>
+                <form action="/userd3/votepost" method="POST">
+                    <input type="hidden" name="postId" value="{{.PostId}}">
+                    <input type="hidden" name="vote" value="false">
+                    <input type="submit" value="Не нравится">
+                    <span class="like-dislike-count">{{.Dislike}}</span>
+                </form>
+            </div>
+        </div>
+        {{end}}
+        <h4>Комментарии:</h4>
+            {{range .Comment}}
+            <a name="comment-{{.ID}}"></a>
+            <div class="comment">
+                <div class="description-container">
+                    <pre>{{.Description}}</pre>
+                </div>                
+                <p>Автор: {{.Name}}</p>
+                <p>Дата создания: {{.CreatedDate}}</p>
+                <div class="vote-buttons">
+                    <form action="/userd3/votecomment" method="POST">
+                        <input type="hidden" name="commentId" value="{{.ID}}">
+                        <input type="hidden" name="postId" value="{{.Post}}">
+                        <input type="hidden" name="vote" value="true">
+                        <input type="submit" value="Нравится">
+                        <span class="like-dislike-count">{{.Like}}</span>
+                    </form>
+                    <form action="/userd3/votecomment" method="POST">
+                        <input type="hidden" name="commentId" value="{{.ID}}">
+                        <input type="hidden" name="postId" value="{{.Post}}">
+                        <input type="hidden" name="vote" value="false">
+                        <input type="submit" value="Не нравится">
+                        <span class="like-dislike-count">{{.Dislike}}</span>
+                    </form>
+                    {{if eq .AutorComment 1}}
+                    <form action="/userd3/updatecomment" method="GET">
+                        <input type="hidden" name="commentId" value="{{.ID}}">
+                        <input type="hidden" name="postId" value="{{.Post}}">
+                        <input type="hidden" name="description" value="{{.Description}}">
+                        <input type="submit" value="Изменить">
+                    </form>
+                    <form action="/userd3/deletecomment" method="POST">
+                        <input type="hidden" name="commentId" value="{{.ID}}">
+                        <input type="hidden" name="postId" value="{{.Post}}">
+                        <input type="submit" value="Удалить">
+                    </form>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
+    <form class="comment-form" action="/userd3/createcomment" method="POST">
+        <input type="hidden" name="postId" value="{{.Post.PostId}}">
+        <textarea name="comment" placeholder="Введите ваш комментарий" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Отправить">
+    </form>
+    </section>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var images = document.querySelectorAll('.zoomable');
+    var overlay = document.querySelector('.overlay');
+
+    images.forEach(function(image) {
+        image.addEventListener('click', function(event) {
+            if (this.classList.contains('fullscreen')) {
+                this.classList.remove('fullscreen');
+                overlay.classList.remove('active');
+            } else {
+                this.classList.add('fullscreen');
+                overlay.classList.add('active');
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

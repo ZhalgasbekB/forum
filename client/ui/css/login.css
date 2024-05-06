@@ -1,0 +1,114 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+h1 {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    margin-top: 0; /* Убираем верхний отступ */
+}
+
+form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Центрируем форму по горизонтали */
+    max-width: 400px; /* Ограничиваем ширину формы */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 22px); /* Учитываем внутренние отступы */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.social-icons {
+    text-align: center; /* Выравниваем по центру */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.social-icons a {
+    display: inline-block; /* Размещаем кнопки на одной строке */
+    margin: 0 10px; /* Отступ между изображениями */
+    vertical-align: middle; /* Выравнивание по вертикали */
+}
+
+/* Футер */
+footer {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+section {
+    padding: 30px;
+    margin-bottom: 100px
+}
+/* Медиа-запросы для адаптивности */
+@media only screen and (max-width: 600px) {
+    form {
+        max-width: 300px; /* Уменьшаем ширину формы для мобильных устройств */
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: calc(100% - 22px); /* Учитываем внутренние отступы */
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 14px; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+
+    button[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+}
+
+/* Медиа-запросы для адаптивности */
+@media only screen and (max-width: 812px) {
+    form {
+        max-width: 300px; /* Уменьшаем ширину формы для мобильных устройств */
+        margin-bottom: 108px;
+    }
+}

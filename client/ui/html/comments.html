@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комментарии</title>
+    <link rel="stylesheet" href="/ui/css/comments.css">
+</head>
+<body>
+    <header>
+        <h1>Комментарии к теме</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/register">Зарегистрироваться</a></li>
+                <li><a href="/login">Войти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <section>
+            {{with .Post}}
+            <div class="post">
+                <h3>{{.Title}}</h3>
+                {{if .PathImage}}
+                <div class="image-container" style="background-image: url('http://localhost:8082{{.PathImage}}') width 500px;">
+                </div>
+                {{else}}
+                {{end}}
+                <div class="description-container">
+                    <pre>{{.Description}}</pre>
+                </div>            
+                <p>Категория: {{.CategoryName}}</p>
+                <p>Автор: {{.Author}}</p>
+                <p>Дата создания: {{.CreateDate}}</p>
+                <div class="vote-buttons">
+                    <span class="like-dislike-count">Нравится {{.Like}}</span>
+                    <span class="like-dislike-count">Не нравится {{.Dislike}}</span>
+                </div>
+            </div>
+            {{end}}
+        <h4>Комментарии:</h4>
+        {{if .Comment}}
+            {{range .Comment}}
+            <a name="comment-{{.ID}}"></a>
+            <div class="comment">
+                <div class="description-container">
+                    <pre>{{.Description}}</pre>
+                </div>                
+                <p>Автор: {{.Name}}</p>
+                <p>Дата создания: {{.CreatedDate}}</p>
+                <div class="vote-buttons">
+                        <span class="like-dislike-count">Нравится {{.Like}}</span>
+                        <span class="like-dislike-count">Не нравится {{.Dislike}}</span>
+                </div>
+            </div>
+            {{end}}
+            {{else}}
+            <div class="comment">
+            <p>Пока комментарии к данной теме отсутствуют</p>
+            </div>
+            {{end}}
+    </section>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+</html>

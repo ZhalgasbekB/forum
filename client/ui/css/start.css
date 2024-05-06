@@ -1,0 +1,120 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #ccc;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку при нехватке места */
+    justify-content: center; /* Выравнивание по горизонтали по центру */
+}
+
+.square {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    margin: 20px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Добавляем переход для box-shadow */
+    border-radius: 20px; /* Закругленные углы для всех квадратов */
+}
+
+.square button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    border-radius: 20px; /* Закругленные углы для кнопок */
+}
+
+.square:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка квадрата при наведении */
+}
+
+.square.D1 button {
+    background-color:  #ccc; /* Физалис */
+}
+
+.square.D2 button {
+    background-color:  #ccc; /* Фуксия */
+}
+
+.square.D3 button {
+    background-color: rgb(236, 110, 38); /* Папайя */
+}
+
+.square.D4 button {
+    background-color:  #ccc; /* Ментол */
+}
+
+footer {
+    background-color: #ccc;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Медиа-запросы для адаптивности */
+@media only screen and (max-width: 600px) {
+    nav ul li {
+        display: block; /* Изменяем отображение элементов меню на блочное для мобильных устройств */
+        margin-right: 0; /* Убираем правый отступ */
+        margin-bottom: 10px; /* Добавляем нижний отступ между элементами */
+    }
+
+    .square {
+        width: calc(50% - 40px); /* Уменьшаем ширину квадратов для мобильных устройств */
+        height: 100px; /* Уменьшаем высоту квадратов для мобильных устройств */
+        margin: 10px; /* Уменьшаем отступы между квадратами для мобильных устройств */
+        line-height: 100px; /* Устанавливаем высоту текста по центру квадрата */
+        font-size: 18px; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+}

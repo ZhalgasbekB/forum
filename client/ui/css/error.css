@@ -1,0 +1,82 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+h1 {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    margin-top: 0; /* Убираем верхний отступ */
+}
+
+li {
+    display: inline;
+    margin-right: 20px;
+}
+
+li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Стили для кнопки "Главная" */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(240, 13, 13);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #d00;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px); /* Высота минус высота заголовка и футера */
+}
+
+.main_content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main_error {
+    color: #ff0000;
+}
+
+footer {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .main_content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgb(255, 255, 255);
+    }
+}

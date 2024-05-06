@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменение комментария</title>
+    <link rel="stylesheet" href="/ui/css/updatecomment.css">
+</head>
+<body>
+    <header>
+        <h1>Изменение комментария на форуме МЦД-3</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/posts">Создать пост</a></li>
+                <li><a href="/userd3/myposts">Мои посты</a></li>
+                <li><a href="/userd3/likeposts">Понравившиеся темы</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="/userd3/updatecomment" method="POST">
+        <textarea name="updatedComment" rows="4" required>{{.Description}}</textarea><br>
+        <input type="hidden" name="commentId" value="{{.ID}}">
+        <input type="hidden" name="postId" value="{{.Post}}">
+        <input type="submit" value="Изменить">
+    </form>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать тему</title>
+    <link rel="stylesheet" href="/ui/css/createpost.css">
+</head>
+<body>
+    <header>
+        <h1>Создать новую тему на форуме МЦД-3</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/myposts">Мои темы</a></li>
+                <li><a href="/userd3/likeposts">Понравившиеся темы</a></li>
+                <li><a href="/liked-posts">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="/userd3/posts" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="category">Выберите категорию:</label>
+            <select id="category" name="category">
+                <option value="Станции">Станции</option>
+                <option value="Поезда">Поезда</option>
+                <option value="Расписание">Расписание</option>
+                <option value="Тарифы">Тарифы</option>
+                <option value="Строительство">Строительство</option>
+                <option value="Другое">Другое</option>
+            </select>
+        </div>
+        <div>
+            <label for="title">Тема:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="description">Описание:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <div>
+            <label for="image">Выберите изображение:</label>
+            <input type="file" name="image" id="image" accept="image/*">
+        </div>
+        <button type="submit">Отправить</button>
+    </form>    
+<footer>
+    <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+</footer>
+</body>
+</html>
+

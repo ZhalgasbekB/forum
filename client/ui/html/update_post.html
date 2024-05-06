@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменение поста</title>
+    <link rel="stylesheet" href="/ui/css/updatepost.css">
+</head>
+<body>
+    <header>
+        <h1>Изменение темы</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/posts">Создать пост</a></li>
+                <li><a href="/userd3/myposts">Мои посты</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="postupdate">
+            <form id="postForm" action="/userd3/updatepost/" method="POST">
+                {{if .Post.PathImage}}
+                <img src="http://localhost:8082{{.Post.PathImage}}" alt="Картинка поста" style="width: 350px; height: auto;">
+                {{else}}
+                {{end}}
+                <input type="hidden" name="postId" value="{{.Post.PostId}}">
+                <label for="title">Заголовок:</label><br>
+                <input type="text" id="title" name="title" value="{{.Post.Title}}"><br>
+                <label for="description">Описание:</label><br>
+                <textarea id="description" name="description" rows="4" cols="50">{{.Post.Description}}</textarea><br>
+                <div class="button-group">
+                    <input type="submit" value="Изменить">
+                    <input  type="submit" id="deleteButton"  value="Удалить">
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>© 2024 | Твои магистрали</p>
+    </footer>
+</body>
+<script>
+    // Находим форму и кнопку "Удалить"
+    const form = document.getElementById('postForm');
+    const deleteButton = document.getElementById('deleteButton');
+
+    // Обработчик события для кнопки "Удалить"
+    deleteButton.addEventListener('click', function() {
+        // Изменяем атрибуты формы для отправки запроса на другой URL и методом POST
+        form.action = '/userd3/deletepost/';
+        form.method = 'POST';
+        // Отправляем форму
+        form.submit();
+    });
+</script>
+</html>
+

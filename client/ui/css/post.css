@@ -1,0 +1,297 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Устанавливаем положение body в относительное */
+    min-height: 100vh; /* Задаем минимальную высоту body, чтобы занимал всю высоту видимой области */
+}
+
+/* Футер */
+footer {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+/* Стили для header и footer */
+header {
+    background-color: rgb(236, 110, 38);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Добавляем относительное позиционирование для header и footer */
+}
+
+/* Навигационное меню в сером прямоугольнике */
+nav {
+    background-color: #ddd; /* Серый цвет фона */
+    padding: 10px;
+    margin-bottom: 20px; /* Отступ снизу */
+    border-radius: 10px; /* Закругление углов */
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+    padding-left: 20px; /* Добавляем отступ слева */
+    padding-right: 20px; /* Добавляем отступ справа */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Убираем правый отступ у последнего элемента */
+}
+
+nav ul li a {
+    color: #333; /* Цвет текста */
+    text-decoration: none;
+    padding: 8px 16px; /* Поля внутри элемента */
+    border-radius: 5px; /* Закругление углов кнопок */
+}
+
+nav ul li a:hover {
+    background-color: #bbb; /* Серый цвет фона при наведении */
+}
+
+section {
+    padding: 30px;
+    margin-bottom: 100px
+}
+
+
+/* Стили для постов */
+.post {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9; /* Цвет фона поста */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для поста */
+    border-radius: 8px; /* Закругление углов поста */
+    transition: all 0.3s ease; /* Плавное изменение при наведении */
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+    padding-left: 20px; /* Добавляем отступ слева */
+    padding-right: 20px; /* Добавляем отступ справа */
+}
+
+.description-container {
+    max-width: 100%;
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку при необходимости */
+}
+
+.post:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Увеличение тени при наведении */
+}
+
+.post h3 {
+    margin-top: 0;
+    color: rgb(236, 110, 38); /* Цвет заголовка поста */
+}
+
+/* Стили для комментариев */
+.comment {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9; /* Цвет фона комментария */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для комментария */
+    border-radius: 8px; /* Закругление углов комментария */
+    transition: all 0.3s ease; /* Плавное изменение при наведении */
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+    padding-left: 20px; /* Добавляем отступ слева */
+    padding-right: 20px; /* Добавляем отступ справа */
+}
+
+.comment:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Увеличение тени при наведении */
+}
+
+.comment-form {
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+}
+.comment-form textarea {
+    resize: none; /* Запрет на изменение размеров */
+    width: 100%; /* Ширина равна 100% от родительского контейнера */
+    padding: 10px; /* Поля вокруг текста */
+    border: 1px solid #ddd; /* Рамка */
+    border-radius: 5px; /* Закругление углов */
+    box-sizing: border-box; /* Учитываем границы и поля в общей ширине */
+    transition: border-color 0.3s ease; /* Плавная анимация при изменении цвета рамки */
+}
+
+.comment-form textarea:focus {
+    border-color: rgb(236, 110, 38); /* Изменение цвета рамки при фокусе */
+
+}
+
+.comment-form input[type="submit"] {
+    margin-top: 10px; /* Отступ сверху от поля ввода */
+    margin-left: 5px; /* Небольшой отступ слева */
+    background-color: rgb(240, 13, 13);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form input[type="submit"]:hover {
+    background-color: #d00;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+    padding-left: 20px; /* Добавляем отступ слева */
+    padding-right: 20px; /* Добавляем отступ справа */
+}
+ h4 {
+    max-width: 1024px; /* Максимальная ширина списка постов */
+    margin-left: auto; /* Выравниваем по центру */
+    margin-right: auto; /* Выравниваем по центру */
+    padding-left: 20px; /* Добавляем отступ слева */
+    padding-right: 20px; /* Добавляем отступ справа */
+ }
+
+/* Стили для кнопок голосования */
+.vote-buttons {
+    margin-top: 20px;
+}
+
+.vote-buttons form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.vote-buttons input[type="submit"] {
+    background-color: rgb(240, 13, 13);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.vote-buttons input[type="submit"]:hover {
+    background-color: #d00;
+}
+/* Стили для увеличения изображения при наведении */
+.zoomable {
+    transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease, width 0.3s ease, height 0.3s ease;
+    cursor: pointer; /* Добавим курсор в виде указателя для обозначения кликабельности */
+}
+
+.zoomable.fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(5); /* Увеличение изображения в 2 раза и центрирование по горизонтали и вертикали */
+    z-index: 9999;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    z-index: 9998; /* Слой ниже увеличенного изображения */
+    display: none; /* Изначально скрываем */
+    border-radius: 8px; /* Закругление углов поста */
+}
+
+.overlay.active {
+    display: block; /* Показываем задний фон при увеличении изображения */
+}
+
+
+/* Медиа-запросы для адаптивности */
+@media only screen and (max-width: 600px) {
+    header {
+        position: fixed;
+        left: 0; /* Размещаем header слева */
+    right: 0; /* Размещаем header справа */
+    }
+
+    /* Уменьшаем размер текста в заголовке */
+    header h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .post {
+        margin-top: 200px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: #f9f9f9; /* Цвет фона поста */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для поста */
+        border-radius: 8px; /* Закругление углов поста */
+        transition: all 0.3s ease; /* Плавное изменение при наведении */
+    }
+
+    nav {
+        background-color: #ddd; /* Серый цвет фона */
+        margin-bottom: 10px; /* Отступ снизу */
+        border-radius: 10px; /* Закругление углов */
+    }
+
+    /* Стили для списка элементов меню */
+    nav ul {
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        white-space: nowrap;
+    }
+
+    nav ul li {
+        display: inline-block;
+        justify-content: left;
+    }
+
+    /* Стили для кнопок голосования */
+.vote-buttons {
+    margin-top: 10px;
+}
+
+.vote-buttons form {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.vote-buttons input[type="submit"] {
+    background-color: rgb(240, 13, 13);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.vote-buttons input[type="submit"]:hover {
+    background-color: #d00;
+}
+}

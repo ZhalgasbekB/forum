@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Избранное</title>
+    <link rel="stylesheet" href="/ui/css/likeposts.css">
+</head>
+<body>
+    <header>
+        <h1>Ваши избранные темы на форуме МЦД-3</h1>
+        <nav>
+            <ul>
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/posts">Создать тему</a></li>
+                <li><a href="/userd3/myposts">Мои темы</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <ul class="posts-list">
+        {{if .}}
+            {{range .}}
+            <li class="post">
+                    <a href="/userd3/post/{{.PostId}}" class="post post-link">
+                    <h3>Тема: {{.Title}}</h3>
+                    {{if .PathImage}}
+                    <img src="http://localhost:8082{{.PathImage}}" alt="Картинка поста" style="width: 100px; height: auto;">
+                    {{else}}
+                    {{end}}
+                    <div class="description-container">
+                        <pre>{{.Description}}</pre>
+                    </div>
+                    
+                    <div class="post-info">
+                        <p>Категория: {{.CategoryName}}</p>
+                        <p>Дата создания: {{.CreateDate}}</p>
+                        <p>Автор: {{.Author}}</p>
+                    </div>
+                </a>
+                <p>Нравится <span class="like-count">{{.Like}}</span> Не нравится <span class="dislike-count">{{.Dislike}}</span></p>
+            </li>
+            {{end}}
+        {{else}}
+            <li>Нет понравившихся тем</li>
+        {{end}}
+    </ul>
+    </section>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+</html>

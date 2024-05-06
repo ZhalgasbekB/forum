@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/ui/css/home.css"> <!-- Подключаем файл со стилями -->
+</head>
+{{if .Cookie}}
+<body class="logged-in"> <!-- Добавляем класс для залогиненного пользователя -->
+    <header>
+        <h1>Добро пожаловать <span class="username">{{ .Username}}</span> на форум МЦД-3</h1>
+        <nav>
+            <ul class="show">
+                <li><a href="/userd3">Главная</a></li>
+                <li><a href="/userd3/posts">Создать тему</a></li>
+                <li><a href="/userd3/myposts">Мои темы</a></li>
+                <li><a href="/userd3/likeposts">Понравившиеся темы</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+        <!-- Форма для выбора категории -->
+        <form action="/userd3/category" method="GET">
+            <div class="category-section">
+                <label for="category">Выберите категорию обсуждения:</label>
+                <select id="category" name="category">
+                    <option value="Станции">Станции</option>
+                    <option value="Поезда">Поезда</option>
+                    <option value="Расписание">Расписание</option>
+                    <option value="Тарифы">Тарифы</option>
+                    <option value="Строительство">Строительство</option>
+                    <option value="Другое">Другое</option>
+                </select>
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+    </header>
+    <!-- Список постов -->
+    <ul class="posts-list">
+        {{if .Posts}}
+            {{range .Posts}}
+            <li class="post" style="background-image: url('http://localhost:8082{{.PathImage}}'); background-size: cover;">
+                <a href="/userd3/post/{{.PostID}}" class="post-link">
+                    <h3>Тема: {{.Title}}</h3>
+                    <div class="description-container">
+                        <pre>{{.Description}}</pre>
+                    </div>
+                    <div class="post-info">
+                        <p>Категория: {{.CategoryName}}</p>
+                        <p>Автор: {{.Author}}</p>
+                        <p>Дата создания: {{.CreatedAt}}</p>
+                    </div>
+                </a>
+                <div class="button_vote">
+                    <p>Нравится {{.Like}}</span> </p>
+                </div>
+                <div class="button_vote">
+                    <p> Не нравится {{.Dislike}}</span></p>
+                </div>
+            </li>
+            {{end}}
+        {{else}}
+            <li>Темы для обсуждения отсутствуют</li>
+        {{end}}
+    </ul>    
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+{{else}}
+<body>
+    <header>
+        <h1>Добро пожаловать на форум МЦД-3!</h1>
+        <nav>
+            <ul>
+                <li><a href="/register">Зарегистрироваться</a></li>
+                <li><a href="/login">Войти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <ul class="posts-list"> <!-- Используем список для постов -->
+        {{if .Posts}}
+        {{range .Posts}}
+        <li class="post" style="background-image: url('http://localhost:8082{{.PathImage}}'); background-size: cover;">
+            <a href="/userd3/post/{{.PostID}}" class="post-link">
+                <h3>Тема: {{.Title}}</h3>
+                <div class="description-container">
+                    <pre>{{.Description}}</pre>
+                </div>
+                <div class="post-info">
+                    <p>Категория: {{.CategoryName}}</p>
+                    <p>Автор: {{.Author}}</p>
+                    <p>Дата создания: {{.CreatedAt}}</p>
+                </div>
+            </a>
+            <div class="button_vote">
+                <p>Нравится {{.Like}}</span> </p>
+            </div>
+            <div class="button_vote">
+                <p> Не нравится {{.Dislike}}</span></p>
+            </div>
+        <div>
+            <a href="/userd3/comments/{{.PostID}}" class="button_1713441932345" target="_blank">
+                Комментарий
+            </a>
+        </div>
+        </li>
+        {{end}}
+        {{else}}
+        <li>Темы для обсуждения на форуме отсутствуют</li>
+        {{end}}
+    </ul>
+    <footer>
+        <p>© 2024 МЦД-3 | Раменское - Зеленоград</p>
+    </footer>
+</body>
+{{end}}
+</html>

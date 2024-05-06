@@ -1,0 +1,68 @@
+package user
+
+import (
+	"database/sql"
+
+	"gitea.com/lzhuk/forum/internal/errors"
+	"gitea.com/lzhuk/forum/internal/model"
+)
+
+type SessionRepository struct {
+	db *sql.DB
+}
+
+func NewSessionRepository(db *sql.DB) *SessionRepository {
+	return &SessionRepository{db: db}
+}
+
+const (
+	createSessionQuery   = `INSERT INTO sessions (uuid, user_id, expire_at) VALUES ($1,$2,$3)`
+	deleteSessionQuery   = `DELETE FROM sessions WHERE uuid = $1`
+	userIDQueryBySession = `SELECT user_id FROM sessions WHERE uuid = $1`
+	sessionQueryByID     = `SELECT * FROM sessions WHERE user_id = $1`
+	sessionQueryByUUID   = `SELECT * FROM sessions WHERE uuid = $1`
+)
+
+func (s *SessionRepository) CreateSession(session *model.Session) error {
+	if _, err := s.db.Exec(createSessionQuery, session.UUID, session.UserID, session.ExpireAt); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRepository) DeleteSession(uuid string) error {
+	if _, err := s.db.Exec(deleteSessionQuery, uuid); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRepository) SessionByID(userID int) (*model.Session, error) {
+	var session model.Session
+	if err := s.db.QueryRow(sessionQueryByID, userID).Scan(&session.UUID, &session.UserID, &session.ExpireAt); err != nil {
+		return nil, err
+	}
+	return &session, nil
+}
+
+func (s *SessionRepository) UserIDBySession(session *model.Session) (int, error) {
+	var userId int
+	if err := s.db.QueryRow(userIDQueryBySession, session.UUID).Scan(&userId); err != nil {
+		if err == sql.ErrNoRows {
+			return -1, errors.ErrNotFoundData
+		}
+		return -1, err
+	}
+	return userId, nil
+}
+
+func (s *SessionRepository) SessionByUUID(uuid string) (*model.Session, error) {
+	session := &model.Session{}
+	if err := s.db.QueryRow(sessionQueryByUUID, uuid).Scan(&session.UUID, &session.UserID, &session.ExpireAt); err != nil {
+		if err == sql.ErrNoRows {
+			return nil, errors.ErrNotFoundData
+		}
+		return nil, err
+	}
+	return session, nil
+}
