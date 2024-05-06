@@ -6,10 +6,10 @@ The project implements the functionality of a web resource in the form of a foru
 
 Functionally, the forum has the ability to register new users with further login to use the web resource. The forum home page contains information about current topics being discussed, comments and reactions. Each user can leave a post with a topic in one of the following categories:
 
-- Trains;
-- Stations;
-- Schedule;
-- Rates;
+- Trains
+- Stations
+- Schedule
+- Rates
 - Other
 
 Each user has the opportunity to put reactions to posts and comments, as well as make changes and delete them.
@@ -21,16 +21,16 @@ Themes that were created by the user are available when you go to "My Themes".
 Upon completion, the user can end the session by clicking on “Logout”.
 
 The project is built on a microservice architecture, which includes two services:
-- client;
-- server.
+- Client
+- Server
 
 The project uses the following technologies:
-- Go programming language;
-- hypertext markup language HTML;
-- CSS styling language;
+- Go programming language
+- hypertext markup language HTML
+- CSS styling language
 - for building Docker service components
 
-Interaction is based on REST API principles
+Interaction is based on REST API principles.
 
 ### **Instructions**
 
