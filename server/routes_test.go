@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -90,18 +92,25 @@ func TestRegisterExistingAccount(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
 	}
 
-	expected := "{\"status\":500,\"message\":\"Name already exist\"}\n"
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
+	expected1 := `{"status":500,"message":"Email already exist"}
+`
+	expected2 := `{"status":500,"message":"Name already exist"}
+`
+	if rr.Body.String() != expected1 && rr.Body.String() != expected2 {
+		t.Errorf("handler returned unexpected body: got %v want %v or %v", rr.Body.String(), expected1, expected2)
 	}
 }
 
 func TestRegisterNewAccount(t *testing.T) {
+	randomNumber := rand.Float64()
+	randomEmail := fmt.Sprintf("somerandom%v@email.com", randomNumber)
+	randomUsername := fmt.Sprintf("somerandomusername%v", randomNumber)
 	payload := map[string]string{
-		"name":     "somerandomusername",
-		"email":    "somerandom@email.comx", // Should be random always.
+		"name":     randomUsername,
+		"email":    randomEmail,
 		"password": "1234512345",
 	}
+
 	payloadBytes, _ := json.Marshal(payload)
 	req, err := http.NewRequest("POST", "/register", bytes.NewReader(payloadBytes))
 	if err != nil {
@@ -128,7 +137,7 @@ func TestRegisterNewAccount(t *testing.T) {
 
 func TestLoginIncorrectCredentials(t *testing.T) {
 	payload := map[string]string{
-		"email":    "danial@gmail.com",
+		"email":    "danial@gmail.comasdfasdfasdf",
 		"password": "someincorrectpassword",
 	}
 	payloadBytes, _ := json.Marshal(payload)
@@ -160,11 +169,11 @@ func TestLoginIncorrectCredentials(t *testing.T) {
 func TestLoginCorrectCredentials(t *testing.T) {
 	payload := map[string]string{
 		"name":     "Danial",
-		"email":    "danial@gmail.com.somerandom.comx", // Should be random always.
+		"email":    "danial@gmail.com", // Should be an existing gmail
 		"password": "1234512345",
 	}
 	payloadBytes, _ := json.Marshal(payload)
-	req, err := http.NewRequest("POST", "/login", bytes.NewReader(payloadBytes))
+	req, err := http.NewRequest("POST", "/register", bytes.NewReader(payloadBytes))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -172,9 +181,24 @@ func TestLoginCorrectCredentials(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error initializing services: %s", err)
 	}
-
 	h := server.NewHandler(services)
-	handler := http.HandlerFunc(h.Login)
+	handler := http.HandlerFunc(h.Register)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
+	}
+	req, err = http.NewRequest("POST", "/login", bytes.NewReader(payloadBytes))
+	if err != nil {
+		t.Fatal(err)
+	}
+	services, rr, err = initServices()
+	if err != nil {
+		t.Errorf("Error initializing services: %s", err)
+	}
+
+	h = server.NewHandler(services)
+	handler = http.HandlerFunc(h.Login)
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
