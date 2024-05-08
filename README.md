@@ -37,13 +37,19 @@ Interaction is based on REST API principles.
 Procedure for the user:
 <br>
 
+To run from Docker:
 1. Clone the project from the repository
 2. Go to the project root folder
 3. Enter the ` docker-compose up ` command
 4. In the command line of the client terminal, wait for the message about the successful launch of the service "The system check was successful, the client server has started"
 5. Go to [http://localhost:8082/](http://localhost:8082/)
 
-
+To run without Docker:
+1. Clone the project from the repository
+2. Go to the project root folder
+3. Change `http://backend/` to `http://localhost` in `internal/controller/apiPoint.go`
+4. run `go run ./client/cmd` in one terminal
+5. run `go run ./server/cmd` in other terminal
 ### **Tests**
 
 To test, go to the root folder of the project and run the command: ` go test ./...`
