@@ -59,4 +59,4 @@ To test, go to the root folder of the project and run the command: ` go test ./.
 [@zhbolatov](https://01.alem.school/git/zhbolatov)
 [@lzhuk](https://01.alem.school/git/lzhuk)
 [@dbaitako](https://01.alem.school/git/dbaitako)
-[@Sairenn](https://01.alem.school/git/Sairenn)
+[@Sairenn](https://github.com/Sairenn)
